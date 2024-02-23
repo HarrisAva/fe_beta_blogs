@@ -13,7 +13,7 @@ import { Blog } from '../../shared/models/blog';
 export class HomeComponent implements OnInit{
 
   homeBlogs: Blog[] = [];
-  
+
   constructor(private blogsService: BlogService) {}
 
   ngOnInit(): void {
