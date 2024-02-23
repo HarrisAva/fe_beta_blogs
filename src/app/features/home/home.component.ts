@@ -4,26 +4,25 @@ import { BlogListComponent } from '../../shared/blogs/blog-list/blog-list.compon
 import { Blog } from '../../shared/models/blog';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [BlogListComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+	selector: 'app-home',
+	standalone: true,
+	imports: [BlogListComponent],
+	templateUrl: './home.component.html',
+	styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+	homeBlogs: Blog[] = [];
 
-  homeBlogs: Blog[] = [];
+	constructor(private blogsService: BlogService) {}
 
-  constructor(private blogsService: BlogService) {}
-
-  ngOnInit(): void {
-    this.blogsService.getBlogs().subscribe({
-      next: (blogs) => {
-        this.homeBlogs = blogs;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-  }
+	ngOnInit(): void {
+		this.blogsService.getBlogs().subscribe({
+			next: (blogs) => {
+				this.homeBlogs = blogs;
+			},
+			error: (error) => {
+				console.error(error);
+			},
+		});
+	}
 }
